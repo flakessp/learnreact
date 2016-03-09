@@ -9,19 +9,22 @@ export default class Article extends React.Component {
   };
 
   render() {
-    const { article } = this.props;
-    const { isOpen } = this.state;
-    const body = isOpen ? article.text : null;
-
     return (
       <div>
         <h3 onClick = {this.toggleOpen.bind(this)}>{ article.title }</h3>
         <section>
-          {body}
+          {this.getBody()}
         </section>
       </div>
     );
   };
+
+  getBody(){
+    const { article } = this.props;
+    const { isOpen } = this.state;
+    if (!isOpen) return null;
+    return <section>{article.text}</section>
+  }
 
   toggleOpen() {
     this.setState({

@@ -5,21 +5,21 @@ export default class Article extends React.Component {
     super(props);
     this.state = {
       isOpen: false
-    }
-  };
+    };
+  }
 
   getBody(){
     const { article } = this.props;
     const { isOpen } = this.state;
     if (!isOpen) return null;
-    return <section>{article.text}</section>
-  };
+    return <section>{article.text}</section>;
+  }
 
   toggleOpen() {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  };
+  }
 
   render() {
     const { article, isSelected, onClick } = this.props;
@@ -32,5 +32,5 @@ export default class Article extends React.Component {
         {this.getBody()}
       </div>
     );
-  };
+  }
 }

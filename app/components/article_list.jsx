@@ -6,8 +6,8 @@ export default class ArticleList extends React.Component {
     super(props);
     this.state = {
       selected: []
-    }
-  };
+    };
+  }
 
   selectArticle(id) {
     return (ev) =>{
@@ -26,15 +26,15 @@ export default class ArticleList extends React.Component {
           article = {article}
           onClick={this.selectArticle(article.id).bind(this)}
         />
-      </li>
+      </li>;
     });
     return(
       <ul>
         {articleComponents}
       </ul>
     );
-  };
-};
+  }
+}
 
 ArticleList.propTypes = {
   articles: React.PropTypes.array.isRequired

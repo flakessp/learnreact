@@ -27,13 +27,18 @@ export default class Article extends React.Component {
     });
   }
 
+  eventStack() {
+    this.props.onClick();
+    this.toggleOpen();
+  }
+
   render() {
-    const { article, isSelected, onClick } = this.props;
+    const { article, isSelected} = this.props;
     const style = isSelected ? {color: 'red'} : null;
 
     return (
       <div style={style}>
-        <h3 onClick = {this.toggleOpen.bind(this)}>{ article.title }</h3>
+        <h3 onClick = {this.eventStack.bind(this)}>{ article.title }</h3>
         {this.getBody()}
       </div>
     );

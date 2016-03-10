@@ -5,18 +5,16 @@ export default class ArticleList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opened: []
+      selected: ''
     };
   }
 
   selectArticle(id) {
     return (ev) =>{
       if (ev) ev.preventDefault();
-      if(this.state.opened.indexOf(id)==-1){
-        this.setState({
-          opened: this.state.opened.concat(id)
-        });
-      }
+      this.setState({
+        selected: id
+      });
     };
   }
 
@@ -24,8 +22,9 @@ export default class ArticleList extends React.Component {
     const articleComponents = this.props.articles.map((article) => {
       return <li key = {article.id}>
         <Article
-          article = {article}
-          onClick={this.selectArticle(article.id).bind(this)}
+            onClick={this.selectArticle(article.id).bind(this)}
+            isSelected = {this.state.selected == article.id}
+            article = {article}
         />
       </li>;
     });

@@ -23,7 +23,7 @@ export default class Article extends React.Component {
 
   toggleOpen() {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: this.props.isSelected
     });
   }
 
@@ -33,11 +33,10 @@ export default class Article extends React.Component {
   }
 
   render() {
-    const { article, isSelected} = this.props;
-    const style = isSelected ? {color: 'red'} : null;
+    const { article, onClick, isSelected} = this.props;
 
     return (
-      <div style={style}>
+      <div>
         <h3 onClick = {this.eventStack.bind(this)}>{ article.title }</h3>
         {this.getBody()}
       </div>

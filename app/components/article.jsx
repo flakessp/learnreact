@@ -16,10 +16,9 @@ export default class Article extends React.Component {
     return (
       <section>
         {article.text}
-        <CommentsList comments = {article.comments} />
+        <CommentsList comments = {article.comments} articleId={article.id} />
       </section>
-    )
-;
+    );
   }
 
   toggleOpen() {
@@ -35,7 +34,6 @@ export default class Article extends React.Component {
     return (
       <div style={style}>
         <h3 onClick = {this.toggleOpen.bind(this)}>{ article.title }</h3>
-        <a href="#" onClick = {onClick}>Select me</a>
         {this.getBody()}
       </div>
     );

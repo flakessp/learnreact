@@ -5,7 +5,7 @@ class ArticleList extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      selected: []
+      opened: null
     }
   }
   render(){
@@ -13,9 +13,9 @@ class ArticleList extends React.Component{
       return (
         <li key={article.id}>
           <Article
-            isSelected = {this.state.selected.includes(article.id)}
+            isOpen = {this.state.opened}
             article={article}
-            onClick={this.selectArticle(article.id).bind(this)}/>
+            onClick={this.toggleOpen(article.id).bind(this)}/>
         </li>
       )
     });
@@ -25,13 +25,18 @@ class ArticleList extends React.Component{
       </ul>
     )
   }
-
-  selectArticle(id) {
-    return (ev) => {
-      if(ev) ev.preventDefault();
-      this.setState({
-        selected: this.state.selected.concat(id)
-      })
+  toggleOpen(id) {
+    return (ev) =>{
+      if(id==this.state.opened){
+        this.setState({
+          opened: null
+        })
+      }
+      else{
+        this.setState({
+          opened: id
+        })
+      }
     }
   }
 }

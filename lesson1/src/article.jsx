@@ -1,35 +1,20 @@
 import React from 'react';
 
 class Article extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false
-    }
-  }
   render(){
-    const {article, isSelected, onClick} = this.props;
-    const style = isSelected ? {color:'red'} : null;
+    const {article, isOpen, onClick} = this.props;
     return (
-      <div style={style}>
-        <h1 onClick={this.toggleOpen.bind(this)}>{article.title}</h1>
-        <a href="#" onClick={onClick}>select me</a>
+      <div>
+        <h1 onClick={onClick}>{article.title}</h1>
         {this.getBody()}
       </div>
       )
   }
 
   getBody() {
-    const {article} = this.props;
-    const {isOpen} = this.state;
-    if(!isOpen) return null;
+    const {article, isOpen} = this.props;
+    if (isOpen!=article.id) return null;
     return <section>{article.text}</section>;
-  }
-
-  toggleOpen() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
   }
 }
 
